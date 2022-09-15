@@ -12,27 +12,5 @@
     /*grid-gap: 10px;*/;
 }
 
-.header {
-    grid-area: h;
-    background-color: coral;
-}
 
-.header img {
-    width: 50px;
-    height: 50px;
-}
 
-.nav {
-    grid-area: n;
-    background-color: khaki;
-}
-
-.content {
-    grid-area: c;
-    background-color: lightseagreen;
-}
-
-.content img {
-    width: 100%;
-    height: 300px;
-}

@@ -10,7 +10,15 @@
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
     /*grid-gap: 10px;*/;
+    height: 50vw;
+    width: 150vh;
 }
+
+.app-wrapper-content  {
+    grid-area: c;
+    background-color: lightseagreen;
+}
+
 
 
 

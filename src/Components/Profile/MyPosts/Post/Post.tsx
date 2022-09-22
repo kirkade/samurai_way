@@ -1,17 +1,18 @@
 import React from "react";
-import styles from 'Post.module.css'
+import styles from './Post.module.css'
 
 type PostProps = {
-    message?:string,
-    likeCounts?:number,
+    message?: string,
+    likeCounts?: number,
 }
 
-export const Post: React.FC<PostProps>= (props) => {
+export const Post: React.FC<PostProps> = (props) => {
     return (
         <div>
-            <div>
-                {props.message}
+            <div className={styles.postInfo}>
+                <img src="https://avatarko.ru/img/kartinka/1/Shrek.jpg" alt="avatar"/>   {props.message}
             </div>
+
             <div>
                 {props.likeCounts}
             </div>

@@ -1,8 +1,12 @@
 import React from "react";
 import styles from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {PostsType} from "../Profile";
 
-export const MyPosts = () => {
+export const MyPosts = (props: PostsType) => {
+
+    let postsElements = props.posts.map(p => <Post message={p.message} likeCounts={7}/>)
+
     return (
         <div className={styles.postsBlock}>
             <div>
@@ -12,10 +16,7 @@ export const MyPosts = () => {
                 <button>Add post</button>
             </div>
             <div className={styles.posts}>
-                <Post message='Hi, how are you?' likeCounts={7}/>
-                <Post message='My first post' likeCounts={12}/>
-                <Post/>
-                <Post/>
+                {postsElements}
             </div>
         </div>
     )

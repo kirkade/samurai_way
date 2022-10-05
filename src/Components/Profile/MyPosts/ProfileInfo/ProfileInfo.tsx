@@ -1,9 +1,10 @@
 import styles from './ProfileInfo.module.css'
 import {MyPosts} from "../MyPosts";
 import React from "react";
+import {PostsType} from "../../Profile";
 
 
-export const ProfileInfo = () => {
+export const ProfileInfo = (props:PostsType) => {
     return (
         <div>
             <div>
@@ -12,7 +13,7 @@ export const ProfileInfo = () => {
             <div className={styles.descriptionBlock}>
                 ava+descript
             </div>
-            <MyPosts />
+            <MyPosts posts={props.posts}/>
         </div>
     )
 }

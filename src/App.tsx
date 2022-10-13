@@ -8,28 +8,10 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
+import {addPost, state} from './redux/state'
 
 
 const App = () => {
-
-    let dialogs = [
-        {id: 1, name: 'Dimych'},
-        {id: 2, name: 'Sasha'},
-        {id: 3, name: 'Victor'},
-        {id: 4, name: 'Anastasia'},
-        {id: 5, name: 'Olga'},
-    ]
-
-    let messages = [
-        {id: 1, message: 'Whatsup'},
-        {id: 2, message: 'Hey?'},
-        {id: 3, message: 'Yo?'},
-    ]
-
-    let posts = [
-        {id: 1, message: 'Hi, how are you?'},
-        {id: 2, message: 'My first post'},
-    ]
 
     return (
         <BrowserRouter>
@@ -38,8 +20,10 @@ const App = () => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path={'/Dialogs/*'} element={<Dialogs dialogs={dialogs} messages={messages} />}/>
-                        <Route path={'/Profile'} element={<Profile posts={posts}/>}/>
+                        <Route path={'/'} element={<Profile state={state.profilePage} addPostCallback={addPost}/>}/>
+                        <Route path={'/Dialogs/*'}
+                               element={<Dialogs state={state.dialogsPage}/>}/>
+                        <Route path={'/Profile'} element={<Profile state={state.profilePage} addPostCallback={addPost}/>}/>
                         <Route path={'/News'} element={<News/>}/>
                         <Route path={'/Music'} element={<Music/>}/>
                         <Route path={'/Settings'} element={<Settings/>}/>

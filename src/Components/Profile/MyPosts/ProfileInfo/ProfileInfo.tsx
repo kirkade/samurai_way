@@ -1,10 +1,10 @@
 import styles from './ProfileInfo.module.css'
 import {MyPosts} from "../MyPosts";
 import React from "react";
-import {PostsType} from "../../Profile";
+import {ProfilePageType} from "../../../../redux/state";
 
 
-export const ProfileInfo = (props:PostsType) => {
+export const ProfileInfo = (props:ProfilePageType) => {
     return (
         <div>
             <div>
@@ -13,7 +13,7 @@ export const ProfileInfo = (props:PostsType) => {
             <div className={styles.descriptionBlock}>
                 ava+descript
             </div>
-            <MyPosts posts={props.posts}/>
+            <MyPosts posts={props.posts} addPostCallback={props.addPostCallback}/>
         </div>
     )
 }

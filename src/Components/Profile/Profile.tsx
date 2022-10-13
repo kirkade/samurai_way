@@ -1,21 +1,16 @@
 import React from 'react';
-import styles from './Profile.module.css'
-import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./MyPosts/ProfileInfo/ProfileInfo";
+import {ProfilePageType} from "../../redux/state";
 
 export type PostsType = {
-    posts: Array<PostsArrayType>
-}
-
-export type PostsArrayType = {
-    id: number,
-    message:string,
+    state:ProfilePageType,
+    addPostCallback:(message:string)=>void
 }
 
 export const Profile = (props:PostsType) => {
     return (
         <div>
-            <ProfileInfo posts={props.posts}/>
+            <ProfileInfo posts={props.state.posts} addPostCallback={props.addPostCallback}/>
         </div>
     )
 }

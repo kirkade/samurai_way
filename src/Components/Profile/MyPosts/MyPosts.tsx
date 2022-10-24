@@ -1,26 +1,36 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useState} from "react";
 import styles from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {addPost, ProfilePageType} from "../../../redux/state";
+import {addPostActionCreator, PostsType} from "../../../redux/state";
+
+type MyPostsPropsType = {
+    dispatch: any
+    posts: Array<PostsType>
+}
 
 
-export const MyPosts = (props: ProfilePageType) => {
+export const MyPosts = (props: MyPostsPropsType) => {
 
-    let messageRef = React.createRef<HTMLTextAreaElement>()
+    let [message, setMessage] = useState<string>('')
 
-    let postsElements = props.posts.map( p => <Post message={p.message} likeCounts={7}/>)
+    let postsElements = props.posts.map(p => <Post message={p.message} likeCounts={p.likesCount}/>)
 
-    const onClickHandler = () => {
-        addPost( messageRef.current ? messageRef.current.value : '----' )
+    const addPost = () => {
+        let action = addPostActionCreator(message)
+        props.dispatch(action)
+    }
+
+    const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setMessage(event.currentTarget.value)
     }
 
     return (
         <div className={styles.postsBlock}>
             <div>
-                <textarea ref={messageRef}></textarea>
+                <input onChange={onChangeHandler} type="text"/>
             </div>
             <div>
-                <button onClick={onClickHandler}>Add post</button>
+                <button onClick={addPost}>Add post</button>
             </div>
             <div className={styles.posts}>
                 {postsElements}

@@ -8,7 +8,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
-import {addPost, state} from './redux/state'
+import {store} from './redux/state'
 
 
 const App = () => {
@@ -20,10 +20,9 @@ const App = () => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path={'/'} element={<Profile state={state.profilePage} addPostCallback={addPost}/>}/>
-                        <Route path={'/Dialogs/*'}
-                               element={<Dialogs state={state.dialogsPage}/>}/>
-                        <Route path={'/Profile'} element={<Profile state={state.profilePage} addPostCallback={addPost}/>}/>
+                        <Route path={'/'} element={<Profile state={store.getState().profilePage} dispatch={store.dispatch.bind(store)}/>}/>
+                        <Route path={'/Dialogs/*'} element={<Dialogs state={store.getState().dialogsPage} dispatch={store.dispatch.bind(store)} />}/>
+                        <Route path={'/Profile'} element={<Profile state={store._state.profilePage} dispatch={store.dispatch.bind(store)}/>}/>
                         <Route path={'/News'} element={<News/>}/>
                         <Route path={'/Music'} element={<Music/>}/>
                         <Route path={'/Settings'} element={<Settings/>}/>
@@ -36,3 +35,4 @@ const App = () => {
 }
 
 export default App;
+

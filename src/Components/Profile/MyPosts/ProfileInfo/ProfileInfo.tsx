@@ -1,7 +1,7 @@
 import styles from './ProfileInfo.module.css'
 import {MyPosts} from "../MyPosts";
 import React from "react";
-import {PostsType} from "../../../../redux/state";
+import {PostsType} from "../../../../redux/store";
 
 type ProfileInfoPropsType = {
     dispatch:any

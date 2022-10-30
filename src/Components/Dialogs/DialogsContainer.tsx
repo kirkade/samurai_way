@@ -1,23 +1,23 @@
-
 import {Dialogs} from "./Dialogs";
+import {StoreContext} from "../../StoreContext";
 
-type DialogsType = {
-    store:any
-}
 
-export const DialogsContainer = (props:DialogsType) => {
-
-    let state = props.store.getState().dialogsPage
-
-    const sendMessage = (message:string) => {
-
-        props.store.dispatch(message)
-
-    }
+export const DialogsContainer = () => {
 
     return (
-        <div >
-            <Dialogs sendMessage={sendMessage} dialogsPage={state}/>
-        </div>
+        <StoreContext.Consumer>
+            {
+                (store: any) => {
+                    let state = store.getState().dialogsPage
+
+                    const sendMessage = (message: string) => {
+                        store.dispatch(message)
+                    }
+
+                    return <Dialogs sendMessage={sendMessage} dialogsPage={state}/>
+                }
+            }
+
+        </StoreContext.Consumer>
     )
 }

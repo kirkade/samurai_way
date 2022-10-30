@@ -2,13 +2,11 @@ import React, {ChangeEvent, useState} from "react";
 import styles from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {PostsType} from "../../../redux/store";
-import {addPostActionCreator} from "../../../redux/reducers/profileReducer";
 
 type MyPostsPropsType = {
-    dispatch: any
+    addPost: (message:string)=>void
     posts: Array<PostsType>
 }
-
 
 export const MyPosts = (props: MyPostsPropsType) => {
 
@@ -16,9 +14,8 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
     let postsElements = props.posts.map(p => <Post message={p.message} likeCounts={p.likesCount}/>)
 
-    const addPost = () => {
-        let action = addPostActionCreator(message)
-        props.dispatch(action)
+    const onAddPost = () => {
+        props.addPost(message)
     }
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -31,7 +28,7 @@ export const MyPosts = (props: MyPostsPropsType) => {
                 <input onChange={onChangeHandler} type="text"/>
             </div>
             <div>
-                <button onClick={addPost}>Add post</button>
+                <button onClick={onAddPost}>Add post</button>
             </div>
             <div className={styles.posts}>
                 {postsElements}

@@ -1,26 +1,28 @@
 import styles from './Dialogs.module.css'
 import {Message} from "./Message/Message";
 import {DialogItem} from "./DialogItem/DialogItem";
-import {MessagePageType} from "../../redux/store";
+
 import {ChangeEvent, useState} from "react";
 import {sendMessageActionCreator} from "../../redux/reducers/dialogsReducer";
 
 type DialogsType = {
-    state: MessagePageType,
-    dispatch: (action:any)=>void
+    dialogsPage:any
+    sendMessage: any
 }
 
 export const Dialogs = (props:DialogsType) => {
 
+    let state = props.dialogsPage
+
     const [message, setMessage] = useState<string>('')
 
-    let dialogsElements = props.state.dialogs.map(d => <DialogItem name={d.name} id={d.id}/>)
+    let dialogsElements = state.dialogs.map((d: { name: string; id: number; }) => <DialogItem name={d.name} id={d.id}/>)
 
-    let messagesElements = props.state.messages.map(m => <Message message={m.message}/>)
+    let messagesElements = state.messages.map((m: { message: string; }) => <Message message={m.message}/>)
 
     const sendMessage = () => {
         let action = sendMessageActionCreator(message)
-        props.dispatch(action)
+        props.sendMessage(action)
         setMessage('')
     }
 

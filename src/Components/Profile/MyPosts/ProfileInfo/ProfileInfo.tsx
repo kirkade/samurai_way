@@ -1,14 +1,11 @@
 import styles from './ProfileInfo.module.css'
-import {MyPosts} from "../MyPosts";
+
 import React from "react";
-import {PostsType} from "../../../../redux/store";
 
-type ProfileInfoPropsType = {
-    dispatch:any
-    posts: Array<PostsType>
-}
 
-export const ProfileInfo = (props:ProfileInfoPropsType) => {
+
+
+export const ProfileInfo = () => {
     return (
         <div>
             <div>
@@ -17,7 +14,6 @@ export const ProfileInfo = (props:ProfileInfoPropsType) => {
             <div className={styles.descriptionBlock}>
                 ava+descript
             </div>
-            <MyPosts posts={props.posts} dispatch={props.dispatch}/>
         </div>
     )
 }

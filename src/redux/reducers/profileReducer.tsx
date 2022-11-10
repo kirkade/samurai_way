@@ -1,4 +1,3 @@
-import {PostsType} from "../store";
 import React from "react";
 import App from "../../App";
 import {root} from "../../index";
@@ -12,7 +11,21 @@ let initialState = {
     ],
 }
 
-export const profileReducer = (state: any = initialState, action: any) => {
+type ProfileStateType = {
+    posts:Array<PostsType>
+}
+
+type PostsType = {
+    id:number
+    message:string
+    likesCount:number
+}
+
+type addPostActionType = ReturnType<typeof addPostActionCreator>
+
+type ActionType = addPostActionType
+
+export const profileReducer = (state: ProfileStateType = initialState, action: ActionType) => {
 
     switch (action.type) {
         case ADD_POST:
@@ -27,12 +40,10 @@ export const profileReducer = (state: any = initialState, action: any) => {
         default:
             return state
     }
-
 }
 
 export const addPostActionCreator = (postMessage: string) => {
-    return {
-        type: ADD_POST,
-        messageText: postMessage
-    }
+    return { type: ADD_POST, messageText: postMessage } as const
 }
+
+

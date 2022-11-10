@@ -6,6 +6,22 @@ import React from "react";
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
+export type DialogsStateType = {
+    dialogs:Array<DialogsType>
+    messages:Array<MessagesType>
+    newMessageBody:string
+}
+
+export type DialogsType = {
+    id:number,
+    name:string
+}
+
+export type MessagesType ={
+    id:number
+    message:string
+}
+
 let initialState = {
     dialogs: [
         {id: 1, name: 'Dimych'},
@@ -22,7 +38,8 @@ let initialState = {
     newMessageBody: ''
 }
 
-export const dialogsReducer = (state: any = initialState, action: any) => {
+
+export const dialogsReducer = (state: DialogsStateType = initialState, action:any) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             state.newMessageBody = action.body
@@ -47,3 +64,4 @@ export const sendMessageActionCreator = (message: string) => {
         messageText: message
     }
 }
+

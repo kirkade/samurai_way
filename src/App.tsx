@@ -9,14 +9,14 @@ import {Music} from "./Components/Music/Music";
 import {Settings} from "./Components/Settings/Settings";
 import {store} from './redux/redux-store'
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
-import {StoreContext} from "./StoreContext";
+import { Provider } from 'react-redux';
 
 
 const App = () => {
 
     return (
         <BrowserRouter>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
                 <div className='app-wrapper'>
                     <Header/>
                     <Navbar/>
@@ -31,7 +31,7 @@ const App = () => {
                         </Routes>
                     </div>
                 </div>
-            </StoreContext.Provider>
+            </Provider>
         </BrowserRouter>
 
     );

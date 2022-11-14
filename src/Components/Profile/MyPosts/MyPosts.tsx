@@ -12,20 +12,22 @@ export const MyPosts = (props: MyPostsPropsType) => {
 
     let [message, setMessage] = useState<string>('')
 
-    let postsElements = props.posts.map(p => <Post message={p.message} likeCounts={p.likesCount}/>)
+    let postsElements = props.posts.map(p => <Post message={p.message} likeCounts={p.likesCount} key={p.id}/>)
 
     const onAddPost = () => {
         props.addPost(message)
+        setMessage('')
     }
 
     const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setMessage(event.currentTarget.value)
+
     }
 
     return (
         <div className={styles.postsBlock}>
             <div>
-                <input onChange={onChangeHandler} type="text"/>
+                <input onChange={onChangeHandler} value={message} type="text"/>
             </div>
             <div>
                 <button onClick={onAddPost}>Add post</button>

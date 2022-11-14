@@ -1,6 +1,4 @@
-import React from "react";
-import App from "../../App";
-import {root} from "../../index";
+
 
 const ADD_POST = 'ADD-POST';
 
@@ -34,9 +32,8 @@ export const profileReducer = (state: ProfileStateType = initialState, action: A
                 message: action.messageText,
                 likesCount: 0,
             }
-            state.posts.push(newPost)
-            root.render(<App/>);
-            return state
+            return {...state, posts: [...state.posts, newPost]}
+
         default:
             return state
     }

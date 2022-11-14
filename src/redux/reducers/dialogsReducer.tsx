@@ -1,9 +1,6 @@
-import {root} from "../../index";
-import App from "../../App";
-import React from "react";
 
 
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
+
 const SEND_MESSAGE = 'SEND-MESSAGE'
 
 export type DialogsStateType = {
@@ -40,17 +37,13 @@ let initialState = {
 
 
 export const dialogsReducer = (state: DialogsStateType = initialState, action:any) => {
-    switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.body
-            return state
 
+    switch (action.type) {
         case SEND_MESSAGE:
-            let body = action.messageText
-            state.newMessageBody = ''
-            state.messages.push({id: new Date().getTime(), message: body})
-            root.render(<App/>);
-            return state
+            let messageBody = action.messageText
+            return {...state, messages: [...state.messages,{id: new Date().getTime(), message: messageBody} ]}
+
+
         default:
             return state
 
@@ -59,9 +52,6 @@ export const dialogsReducer = (state: DialogsStateType = initialState, action:an
 }
 
 export const sendMessageActionCreator = (message: string) => {
-    return {
-        type: SEND_MESSAGE,
-        messageText: message
-    }
+    return {type: SEND_MESSAGE, messageText: message}
 }
 

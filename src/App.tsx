@@ -11,6 +11,8 @@ import {store} from './redux/redux-store'
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import { Provider } from 'react-redux';
 
+import {UsersContainer} from "./Components/Users/UsersContainer";
+
 
 const App = () => {
 
@@ -28,6 +30,7 @@ const App = () => {
                             <Route path={'/News'} element={<News/>}/>
                             <Route path={'/Music'} element={<Music/>}/>
                             <Route path={'/Settings'} element={<Settings/>}/>
+                            <Route path={'/Users'} element={<UsersContainer/>}/>
                         </Routes>
                     </div>
                 </div>

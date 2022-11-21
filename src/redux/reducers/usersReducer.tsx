@@ -1,9 +1,5 @@
 import React from 'react';
 
-export type StateType = {
-    users: Array<UserType>
-}
-
 export type UserType = {
     id: number
     photoUrl:string
@@ -18,33 +14,11 @@ type LocationType = {
     country: string
 }
 
-let initialState = {
-    users: [
-        // {
-        //     id: 1,
-        //     photoUrl:'https://www.jamsadr.com/images/neutrals/person-donald-900x1080.jpg',
-        //     followed: false,
-        //     fullName: 'Dmitry',
-        //     status: 'im a boss',
-        //     location: {city: 'Minsk', country: 'Belarus'}
-        // },
-        // {
-        //     id: 2,
-        //     photoUrl:'https://static01.nyt.com/images/2022/05/19/opinion/firstpersonPromo/firstpersonPromo-videoSixteenByNine3000.jpg',
-        //     followed: true,
-        //     fullName: 'Sasha',
-        //     status: 'im a second boss',
-        //     location: {city: 'Moscow', country: 'Russia'}
-        // },
-        // {
-        //     id: 3,
-        //     photoUrl:'https://cdn.hswstatic.com/gif/play/0b7f4e9b-f59c-4024-9f06-b3dc12850ab7-1920-1080.jpg',
-        //     followed: false,
-        //     fullName: 'Petya',
-        //     status: 'im a third boss',
-        //     location: {city: 'Kiev', country: 'Ukraine'}
-        // },
-    ]
+let initialState:usersStateType = {
+    users: []
+}
+export type usersStateType = {
+    users: Array<UserType>
 }
 
 type ActionType = FollowActionType | unFollowActionType | setUsersActionType
@@ -61,7 +35,7 @@ type setUsersActionType = {
     users:Array<UserType>
 }
 
-export const UsersReducer = (state: StateType = initialState, action: ActionType) => {
+export const UsersReducer = (state: usersStateType = initialState, action: ActionType):usersStateType => {
     switch (action.type) {
         case "Follow":
             return {

@@ -6,25 +6,22 @@ import {UsersPropsType} from "./UsersContainer";
 
 export class UsersC extends React.Component<UsersPropsType> {
 
-    getUsers = () =>{
-        if (this.props.users.length === 0 ){
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response=>{
-
-                this.props.setUsers(response.data.items)
-            })
-
-        }
+    componentDidMount() {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            this.props.setUsers(response.data.items)
+        })
     }
+
 
     render() {
         return (
             <div>
-                <button onClick={this.getUsers}>get users</button>
                 {
                     this.props.users.map((u: any) => <div key={u.id}>
                     <span>
                         <div>
-                            <img style={{maxWidth: '80px', maxHeight:'50px'}} src={u.photos.small !== null ? u.photos.small : avatar} alt={'avatar'}/>
+                            <img style={{maxWidth: '80px', maxHeight: '50px'}}
+                                 src={u.photos.small !== null ? u.photos.small : avatar} alt={'avatar'}/>
                         </div>
                         <div>
                             {u.followed

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from "axios";
 import avatar from './images/user.png'
 import {UsersPropsType} from "./UsersContainer";
+import styles from './UserC.module.css'
 
 
 export class UsersC extends React.Component<UsersPropsType> {
@@ -16,6 +17,13 @@ export class UsersC extends React.Component<UsersPropsType> {
     render() {
         return (
             <div>
+                <div>
+                   <span className={styles.selected}>1</span>
+                   <span>2</span>
+                   <span>3</span>
+                   <span>4</span>
+                   <span>5</span>
+                </div>
                 {
                     this.props.users.map((u: any) => <div key={u.id}>
                     <span>

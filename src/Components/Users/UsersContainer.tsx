@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {connect} from "react-redux";
 
 import {followAC, setUsersAC, unfollowAC, UserType} from "../../redux/reducers/usersReducer";
@@ -8,6 +8,9 @@ import { Dispatch } from 'redux';
 
 type mapStateToPropsType = {
     users:Array<UserType>
+    pageSize:number
+    totalUsersCount:number
+    currentPage: number
 }
 type mapDispatchToPropsType = {
     follow: (id:number) => void
@@ -19,7 +22,11 @@ export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 const mapStateToProps = (state:AppStateType): mapStateToPropsType => {
     return {
-        users:state.usersPage.users
+        users:state.usersPage.users,
+        pageSize:state.usersPage.pageSize,
+        totalUsersCount:state.usersPage.totalUsersCount,
+        currentPage:state.usersPage.currentPage
+
     }
 }
 const mapDispatchToProps = (dispatch:Dispatch):mapDispatchToPropsType => {

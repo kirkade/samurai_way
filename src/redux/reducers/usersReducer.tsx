@@ -1,4 +1,3 @@
-import React from 'react';
 
 export type UserType = {
     id: number
@@ -15,10 +14,16 @@ type LocationType = {
 }
 
 let initialState:usersStateType = {
-    users: []
+    users: [],
+    pageSize:5,
+    totalUsersCount: 20,
+    currentPage:1
 }
 export type usersStateType = {
     users: Array<UserType>
+    pageSize:number
+    totalUsersCount:number
+    currentPage:number
 }
 
 type ActionType = FollowActionType | unFollowActionType | setUsersActionType

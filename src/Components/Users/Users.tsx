@@ -1,23 +1,45 @@
 import React from 'react';
-import axios from "axios";
-import avatar from './images/user.png'
+import styles from "./Users.module.css";
+import avatar from "./images/user.png";
+import {UserType} from "../../redux/reducers/usersReducer";
 
-export const Users = (props: any) => {
-    const getUsers = () => {
-        if (props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+type UsersPropsType = {
+    totalUsersCount: number
+    pageSize: number
+    currentPage: number
+    onPageChanger: (page:number) => void
+    users: Array<UserType>
+    unfollow: (id:number) => void
+    follow: (id:number) => void
+}
 
-                props.setUsers(response.data.items)
-            })
+export const Users = (props: UsersPropsType) => {
 
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+
+    let pages = []
+
+    for (let i = 1; i <= pagesCount; i++) {
+        if (pages.length < 10) {
+            pages.push(i)
         }
     }
 
     return (
         <div>
-            <button onClick={getUsers}>get users</button>
+            <div>
+                {pages.map(p => {
+                    return (
+                        <span key={p} className={props.currentPage === p ? styles.selected : ''}
+                              onClick={() => {
+                                  props.onPageChanger(p)
+                              }}>
+                                {p}</span>
+                    )
+                })}
+            </div>
             {
-                props.users.map((u: any) => <div key={u.id}>
+                props.users.map((u: UserType) => <div key={u.id}>
                     <span>
                         <div>
                             <img style={{maxWidth: '80px', maxHeight: '50px'}}
@@ -48,5 +70,6 @@ export const Users = (props: any) => {
                 </div>)
             }
         </div>
+
     );
 };

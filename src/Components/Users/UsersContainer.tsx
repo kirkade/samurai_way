@@ -1,14 +1,13 @@
 import {connect} from "react-redux";
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC, toggleIsFetchingAC,
-    unfollowAC,
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers, toggleIsFetching,
+    unfollow,
     UserType
 } from "../../redux/reducers/usersReducer";
 import {AppStateType} from "../../redux/redux-store";
-import {Dispatch} from 'redux';
 import React from "react";
 import axios from "axios";
 import {Users} from "./Users";
@@ -82,29 +81,37 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-    return {
-        follow: (id: number) => {
-            dispatch(followAC(id))
-        },
-        unfollow: (id: number) => {
-            dispatch(unfollowAC(id))
-        },
-        setUsers: (users: Array<UserType>) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (page: number) => {
-            dispatch(setCurrentPageAC(page))
-        },
-        setTotalUsersCount: (count: number) => {
-            dispatch(setTotalUsersCountAC(count))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetchingAC(isFetching))
-        },
+// const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+//     return {
+//         follow: (id: number) => {
+//             dispatch(follow(id))
+//         },
+//         unfollow: (id: number) => {
+//             dispatch(unfollow(id))
+//         },
+//         setUsers: (users: Array<UserType>) => {
+//             dispatch(setUsers(users))
+//         },
+//         setCurrentPage: (page: number) => {
+//             dispatch(setCurrentPage(page))
+//         },
+//         setTotalUsersCount: (count: number) => {
+//             dispatch(setTotalUsersCount(count))
+//         },
+//         toggleIsFetching: (isFetching: boolean) => {
+//             dispatch(toggleIsFetching(isFetching))
+//         },
+//
+//     }
+// }
 
+export const UsersContainer = connect(mapStateToProps, {
+        follow,
+        unfollow,
+        setUsers,
+        setCurrentPage,
+        setTotalUsersCount,
+        toggleIsFetching,
     }
-}
-
-export const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersContainerComponent)
+)(UsersContainerComponent)
 

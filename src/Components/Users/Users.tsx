@@ -43,7 +43,7 @@ export const Users = (props: UsersPropsType) => {
                     <span>
                         <div>
                             <img style={{maxWidth: '80px', maxHeight: '50px'}}
-                                 src={u.photos.small !== null ? u.photos.small : avatar} alt={'avatar'}/>
+                                 src={u.photos.small !== null ? u.photos.small : ""} alt={'avatar'}/>
                         </div>
                         <div>
                             {u.followed

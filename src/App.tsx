@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import {Header} from './Components/Header/Header'
 import {Navbar} from './Components/Navbar/Navbar'
-import {Profile} from "./Components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {News} from "./Components/News/News";
 import {Music} from "./Components/Music/Music";
@@ -12,6 +11,7 @@ import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import { Provider } from 'react-redux';
 
 import {UsersContainer} from "./Components/Users/UsersContainer";
+import {ProfileContainer} from "./Components/Profile/ProfileContainer";
 
 
 const App = () => {
@@ -24,9 +24,9 @@ const App = () => {
                     <Navbar/>
                     <div className='app-wrapper-content'>
                         <Routes>
-                            <Route path={'/'} element={<Profile/>}/>
+                            <Route path={'/'} element={<ProfileContainer/>}/>
                             <Route path={'/Dialogs/*'} element={<DialogsContainer/>}/>
-                            <Route path={'/Profile'} element={<Profile/>}/>
+                            <Route path={'/Profile/*'} element={<ProfileContainer/>}/>
                             <Route path={'/News'} element={<News/>}/>
                             <Route path={'/Music'} element={<Music/>}/>
                             <Route path={'/Settings'} element={<Settings/>}/>

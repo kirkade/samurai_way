@@ -16,5 +16,22 @@ console.log(store.getState())
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
+// @ts-ignore
+window.store = store
 
 
+export type StateMessagesType = {
+    id: number,
+    message: string,
+}
+
+export type StateDialogsType = {
+    id: number,
+    name: string,
+}
+
+export type PostsType = {
+    id: number,
+    message: string,
+    likesCount: number
+}

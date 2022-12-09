@@ -9,9 +9,8 @@ import {Settings} from "./Components/Settings/Settings";
 import {store} from './redux/redux-store'
 import {DialogsContainer} from "./Components/Dialogs/DialogsContainer";
 import { Provider } from 'react-redux';
-
 import {UsersContainer} from "./Components/Users/UsersContainer";
-import {ProfileContainer} from "./Components/Profile/ProfileContainer";
+import ProfileContainer from "./Components/Profile/ProfileContainer";
 
 
 const App = () => {

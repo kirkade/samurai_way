@@ -1,7 +1,7 @@
 import React, {ChangeEvent, useState} from "react";
 import styles from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {PostsType} from "../../../redux/store";
+import {PostsType} from "../../../redux/redux-store";
 
 type MyPostsPropsType = {
     addPost: (message:string)=>void

@@ -34,7 +34,12 @@ class UsersContainerComponent extends React.Component<UsersPropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
+            withCredentials: true,
+            headers: {
+                'API-KEY': '84adbf01-f9cc-4ff1-8a31-a9f24ebcbf65'
+            }
+        })
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -45,7 +50,7 @@ class UsersContainerComponent extends React.Component<UsersPropsType> {
     onPageChanger = (page: number) => {
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(page)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.pageSize}`,)
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -81,29 +86,6 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
 
     }
 }
-// const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-//     return {
-//         follow: (id: number) => {
-//             dispatch(follow(id))
-//         },
-//         unfollow: (id: number) => {
-//             dispatch(unfollow(id))
-//         },
-//         setUsers: (users: Array<UserType>) => {
-//             dispatch(setUsers(users))
-//         },
-//         setCurrentPage: (page: number) => {
-//             dispatch(setCurrentPage(page))
-//         },
-//         setTotalUsersCount: (count: number) => {
-//             dispatch(setTotalUsersCount(count))
-//         },
-//         toggleIsFetching: (isFetching: boolean) => {
-//             dispatch(toggleIsFetching(isFetching))
-//         },
-//
-//     }
-// }
 
 export const UsersContainer = connect(mapStateToProps, {
         follow,

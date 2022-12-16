@@ -49,6 +49,7 @@ type toggleIsFetchingActionType = ReturnType<typeof toggleIsFetching>
 export const UsersReducer = (state: usersStateType = initialState, action: ActionType):usersStateType => {
     switch (action.type) {
         case "FOLLOW":
+
             return {
                 ...state,
                 users: state.users.map(u => {

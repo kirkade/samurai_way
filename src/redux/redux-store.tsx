@@ -2,12 +2,14 @@ import {combineReducers,createStore} from "@reduxjs/toolkit";
 import {profileReducer} from "./reducers/profileReducer";
 import {dialogsReducer} from "./reducers/dialogsReducer";
 import {UsersReducer} from "./reducers/usersReducer";
+import {authReducer} from "./reducers/authReducer";
 
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage:dialogsReducer,
     usersPage:UsersReducer,
+    auth: authReducer
 })
 
 export const store = createStore(rootReducer)

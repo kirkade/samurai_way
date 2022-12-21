@@ -13,6 +13,9 @@ type UsersPropsType = {
     users: Array<UserType>
     unfollow: (id: number) => void
     follow: (id: number) => void
+    followingInProgress: Array<number>
+    toggleFollowingProgress: (status:boolean, userID:number) => void
+
 }
 
 export const Users = (props: UsersPropsType) => {
@@ -51,33 +54,36 @@ export const Users = (props: UsersPropsType) => {
                         </div>
                         <div>
                             {u.followed
-                                ? <button onClick={() => {
+                                ? <button  disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                    props.toggleFollowingProgress(true, u.id)
                                     axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                                         withCredentials: true,
-                                        headers:{
-                                            'API-KEY' : '84adbf01-f9cc-4ff1-8a31-a9f24ebcbf65'
+                                        headers: {
+                                            'API-KEY': '84adbf01-f9cc-4ff1-8a31-a9f24ebcbf65'
                                         }
                                     })
                                         .then((res) => {
                                             if (res.data.resultCode === 0) {
                                                 props.unfollow(u.id)
                                             }
+                                            props.toggleFollowingProgress(false, u.id)
                                         })
 
 
                                 }}>Unfollow</button>
-                                : <button onClick={() => {
-
+                                : <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
+                                    props.toggleFollowingProgress(true, u.id)
                                     axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
                                         withCredentials: true,
-                                        headers:{
-                                            'API-KEY' : '84adbf01-f9cc-4ff1-8a31-a9f24ebcbf65'
+                                        headers: {
+                                            'API-KEY': '84adbf01-f9cc-4ff1-8a31-a9f24ebcbf65'
                                         }
                                     })
                                         .then((res) => {
                                             if (res.data.resultCode === 0) {
                                                 props.follow(u.id)
                                             }
+                                            props.toggleFollowingProgress(false, u.id)
                                         })
 
                                 }}>Follow</button>
